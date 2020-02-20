@@ -40,5 +40,5 @@ d - destination point
 Simply download and run 
 
 ```
-Python P1.py
+python p1.py
 ```
