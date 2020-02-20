@@ -1,8 +1,11 @@
 # Dijkstra's Algorithm Implemention
 
 A python implementation of Dijkstra's Algorithm done across an ASCII map.
-A starting and goal point are both designated in the my_map.txt file. This is
-parsed and searched with the shortest path from one to another returned with a graphical representation.
+A starting and goal point are both designated in the my_map.txt file.
+
+This file represents a room with walls and travel costs from space to space.
+This is parsed and searched for the shortest path from a desginated goal to destination, with this path printed in the output.
+In this project you can see me handle multiple different data structures, taking advantage of their unique propeties. You can also see an understanding of complex algorithms, as well as a sophisticated understanding of the python language.
 
 This project was implemented as a project for a class.
 
@@ -11,8 +14,8 @@ This project was implemented as a project for a class.
 
 This file contains all of my own work for this project.
 
-Here you can find my implementation of Dijkstra's algorithm along with several helper functions,
-as well as functions created for debugging.
+Here you can find my implementation of Dijkstra's algorithm along with several other helper functions.
+I have also included functions for debugging, and ensuring the project works under all nominal and edge cases. 
 
 I've worked to make sure the code is clear and readable. I hope you think so as well!
 
