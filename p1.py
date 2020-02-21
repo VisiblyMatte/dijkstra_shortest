@@ -353,27 +353,18 @@ if __name__ == '__main__':
 
     filename = 'my_maze.txt'
 
+    waypoints = 'abcd'
+
     # Load and display the level.
     level = load_level(filename)
     print("\nMaze:\n")
     show_level(level)
 
-    #finds best route
-    test_route(filename, 'a', 'b')
-    test_route(filename, 'a', 'c')
-    test_route(filename, 'a', 'd')
-    test_route(filename, 'b', 'a')
-    test_route(filename, 'b', 'c')
-    test_route(filename, 'b', 'd')
-    test_route(filename, 'c', 'a')
-    test_route(filename, 'c', 'b')
-    test_route(filename, 'c', 'd')
-    test_route(filename, 'd', 'a')
-    test_route(filename, 'd', 'b')
-    test_route(filename, 'd', 'c')
+    for x in waypoints:
+        for y in waypoints:
+            #finds best route
+            test_route(filename, x, y)
 
-    # Calculates cost to all cells in dungeon and returns a csv file showing those costs. For debugging.
-    cost_to_all_cells(filename, 'a', 'maze_costs-a.csv')
-    cost_to_all_cells(filename, 'b', 'maze_costs-b.csv')
-    cost_to_all_cells(filename, 'c', 'maze_costs-c.csv')
-    cost_to_all_cells(filename, 'd', 'maze_costs-d.csv')
+    for x in waypoints:
+        # Calculates cost to all cells in dungeon and returns a csv file showing those costs. For debugging.
+        cost_to_all_cells(filename, x, 'maze_costs-'+x+'.csv')
