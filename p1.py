@@ -253,21 +253,22 @@ def test_route(filename, src_waypoint, dst_waypoint):
 
     """
 
-    # Load and display the level.
-    level = load_level(filename)
+    if src_waypoint != dst_waypoint:
+        # Load and display the level.
+        level = load_level(filename)
 
-    # Retrieve the source and destination coordinates from the level.
-    src = level['waypoints'][src_waypoint]
-    dst = level['waypoints'][dst_waypoint]
+        # Retrieve the source and destination coordinates from the level.
+        src = level['waypoints'][src_waypoint]
+        dst = level['waypoints'][dst_waypoint]
 
-    print("\nRoute from {0} to {1}".format(src_waypoint, dst_waypoint))
+        print("\nRoute from {0} to {1}".format(src_waypoint, dst_waypoint))
 
-    # Search for and display the path from src to dst.
-    path = dijkstras_shortest_path(src, dst, level, navigation_edges)
-    if path:
-        show_level(level, path)
-    else:
-        print("No path possible!\n")
+        # Search for and display the path from src to dst.
+        path = dijkstras_shortest_path(src, dst, level, navigation_edges)
+        if path:
+            show_level(level, path)
+        else:
+            print("No path possible!\n")
 
 def cost_to_all_cells(filename, src_waypoint, output_filename):
     """ Loads a level, calculates the cost to all reachable cells from
