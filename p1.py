@@ -253,20 +253,22 @@ def test_route(filename, src_waypoint, dst_waypoint):
 
     """
 
-    # Load and display the level.
-    level = load_level(filename)
-    show_level(level)
+    if src_waypoint != dst_waypoint:
+        # Load and display the level.
+        level = load_level(filename)
 
-    # Retrieve the source and destination coordinates from the level.
-    src = level['waypoints'][src_waypoint]
-    dst = level['waypoints'][dst_waypoint]
+        # Retrieve the source and destination coordinates from the level.
+        src = level['waypoints'][src_waypoint]
+        dst = level['waypoints'][dst_waypoint]
 
-    # Search for and display the path from src to dst.
-    path = dijkstras_shortest_path(src, dst, level, navigation_edges)
-    if path:
-        show_level(level, path)
-    else:
-        print("No path possible!")
+        print("\nRoute from {0} to {1}".format(src_waypoint, dst_waypoint))
+
+        # Search for and display the path from src to dst.
+        path = dijkstras_shortest_path(src, dst, level, navigation_edges)
+        if path:
+            show_level(level, path)
+        else:
+            print("No path possible!\n")
 
 def cost_to_all_cells(filename, src_waypoint, output_filename):
     """ Loads a level, calculates the cost to all reachable cells from
@@ -277,10 +279,6 @@ def cost_to_all_cells(filename, src_waypoint, output_filename):
         src_waypoint: The character associated with the initial waypoint.
         output_filename: The filename for the output csv file.
     """
-
-    # Load and display the level.
-    level = load_level(filename)
-    show_level(level)
 
     # Retrieve the source coordinates from the level.
     src = level['waypoints'][src_waypoint]
@@ -354,10 +352,20 @@ def calculate_cost(level, cell, is_diagonal, init_cost):
 
 if __name__ == '__main__':
 
-    filename, src_waypoint, dst_waypoint = 'my_maze.txt', 'a','d'
+    filename = 'my_maze.txt'
 
-    #finds best route
-    test_route(filename, src_waypoint, dst_waypoint)
+    waypoints = 'abcd'
 
-    # Calculates cost to all cells in dungeon and returns a csv file showing those costs. For debugging.
-    #cost_to_all_cells(filename, src_waypoint, 'my_maze_costs.csv')
+    # Load and display the level.
+    level = load_level(filename)
+    print("\nMaze:\n")
+    show_level(level)
+
+    for x in waypoints:
+        for y in waypoints:
+            #finds best route
+            test_route(filename, x, y)
+
+    for x in waypoints:
+        # Calculates cost to all cells in dungeon and returns a csv file showing those costs. For debugging.
+        cost_to_all_cells(filename, x, 'maze_costs-'+x+'.csv')
